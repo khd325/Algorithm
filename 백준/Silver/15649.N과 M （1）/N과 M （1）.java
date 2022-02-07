@@ -1,35 +1,43 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 
 public class Main {
-    static boolean[] visit;
+    static int n;
+    static int m;
+    static boolean[] visited;
     static int[] arr;
-    static void dfs(int n,int m,int depth){
-        if (depth == m) {
-            for (int i : arr) {
-                System.out.print(i + " ");
+    static StringBuilder sb = new StringBuilder();
+    static void dfs(int depth){
+        if(depth == m){
+            for(int j = 0; j < arr.length;j++){
+                sb.append(arr[j]).append(" ");
             }
-            System.out.println();
+            sb.append("\n");
             return;
         }
 
-        for (int i = 0; i < n; i++) {
-            if (!visit[i]) {
-                visit[i] = true;
-                arr[depth] = i + 1;
-                dfs(n, m, depth + 1);
-                visit[i] = false;
+        for(int j = 1; j <= n; j++){
+            if(!visited[j]){
+                visited[j] = true;
+                arr[depth] = j;
+                dfs(depth+1);
+                visited[j] = false;
             }
         }
     }
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        visited = new boolean[n + 1];
         arr = new int[m];
-        visit = new boolean[n];
-        dfs(n,m,0);
+
+        dfs(0);
+        System.out.println(sb);
     }
 }
