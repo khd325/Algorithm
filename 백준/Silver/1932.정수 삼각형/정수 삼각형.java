@@ -7,25 +7,33 @@ public class Main {
         StringTokenizer st;
 
         int n = Integer.parseInt(br.readLine());
-        ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+        int[][] dp = new int[n][n];
 
         for(int i = 0; i < n; i++){
-            list.add(new ArrayList<>());
             st = new StringTokenizer(br.readLine());
-            while(st.hasMoreTokens()){
-                list.get(i).add(Integer.parseInt(st.nextToken()));
+            for(int j = 0; j < i + 1; j++){
+                dp[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j <= i; j++){
+                int leftUp,rightUp;
+                if(j == 0) leftUp = 0;
+                else leftUp = dp[i-1][j-1];
 
-        for(int i = n-2; i >= 0; i--){
-            for(int j = 0; j < list.get(i).size(); j++){
-                int temp = 0;
-                temp = Math.max(list.get(i+1).get(j),list.get(i+1).get(j+1));
-                list.get(i).set(j,temp+list.get(i).get(j));
+                if(j == i) rightUp = 0;
+                else rightUp = dp[i-1][j];
+
+                dp[i][j] = dp[i][j] + Math.max(leftUp,rightUp);
             }
         }
 
-        System.out.println(list.get(0).get(0));
+        int result = 0;
+        for(int i = 0; i < n; i++){
+            result = Math.max(result,dp[n-1][i]);
+        }
+
+        System.out.println(result);
     }
 }
