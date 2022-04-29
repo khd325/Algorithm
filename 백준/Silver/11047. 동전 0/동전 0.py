@@ -2,18 +2,17 @@ import sys
 
 n, num = map(int,sys.stdin.readline().split())
 
-list = list()
+array = list()
 
 for _ in range(n):
-    list.append(int(sys.stdin.readline()))
+    array.append(int(sys.stdin.readline()))
 
-list.sort(reverse=True)
+array.sort(reverse=True)
 
+result = 0
 
-count = 0
+for coin in array:
+    result += num//coin
+    num %= coin
 
-for i in list:
-    count += num // i
-    num %= i
-
-print(count)
+print(result)
