@@ -37,7 +37,5 @@ for x,y in array:
         for i in range(y - ran, y + ran+1):
             switch[i] = 0 if switch[i] == 1 else 1
 
-for i in range(1,n+1):
-    print(switch[i], end=' ')
-    if i % 20 == 0:
-        print()
+for i in range(1,n+1,20):
+    print(*switch[i:i+20])
