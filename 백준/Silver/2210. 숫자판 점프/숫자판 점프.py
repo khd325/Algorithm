@@ -1,13 +1,11 @@
 import sys
 
-sys.setrecursionlimit(10 ** 9)
-
 
 def dfs(x, y, l):
 
     if len(l) == 6:
         if l not in result:
-            result.append(l)
+            result.add(l)
         return
 
     for i in range(4):
@@ -16,7 +14,7 @@ def dfs(x, y, l):
         if 0 <= nx < 5 and 0 <= ny < 5:
             dfs(nx,ny,l + graph[nx][ny])
 
-result = []
+result = set()
 graph = []
 cnt = 0
 for _ in range(5):
