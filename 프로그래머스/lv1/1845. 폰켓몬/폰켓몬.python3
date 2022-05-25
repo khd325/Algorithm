@@ -1,0 +1,7 @@
+def solution(nums):
+    array = list(set(nums))
+
+    if len(nums) // 2 > len(array):
+        return len(array)
+    else:
+        return len(nums) // 2
