@@ -1,0 +1,19 @@
+rank = [6, 6, 5, 4, 3, 2, 1]
+
+
+def solution(lottos, win_nums):
+    cnt = 0
+    zero = 0
+    for i in lottos:
+        if i == 0:
+            zero += 1
+            continue
+        for j in range(6):
+            if i == win_nums[j]:
+                cnt += 1
+
+
+    answer = []
+    answer.append(rank[cnt+zero])
+    answer.append(rank[cnt])
+    return answer
