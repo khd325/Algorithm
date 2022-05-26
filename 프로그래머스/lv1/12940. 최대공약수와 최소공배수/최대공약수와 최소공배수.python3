@@ -1,0 +1,15 @@
+def gcd(a, b):
+    if b == 0:
+        return a
+
+    return gcd(b, a % b)
+
+
+def solution(n, m):
+    x = max(n, m)
+    y = min(n, m)
+
+    result = gcd(x, y)
+
+    answer = [result,x*y//result]
+    return answer
