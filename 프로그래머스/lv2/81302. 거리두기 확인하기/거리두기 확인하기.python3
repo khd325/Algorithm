@@ -1,0 +1,90 @@
+from collections import deque
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+visited = [[False] * 5 for _ in range(5)]
+
+
+def bfs(x, y, graph):
+    temp = []
+    global visited
+
+    q = deque()
+
+    q.append((x, y))
+    while q:
+        x, y = q.popleft()
+        visited[x][y] = True
+        if graph[x][y] == 'P':
+            temp.append((x, y))
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if nx < 0 or nx >= 5 or ny < 0 or ny >= 5:
+                continue
+
+            if (graph[nx][ny] == 'O' or graph[nx][ny] == 'P') and not visited[nx][ny]:
+                visited[nx][ny] = True
+                q.append((nx, ny))
+
+    if len(temp) == 1:
+        return True
+    else:
+        for i in range(len(temp) - 1):
+            r1, c1 = temp[i]
+            for j in range(i + 1, len(temp)):
+                r2, c2 = temp[j]
+
+                distance = abs(r1 - r2) + abs(c1 - c2)
+
+                if distance > 2:
+                    continue
+                else:
+                    if distance == 2:
+                        if r1 == r2:
+                            a = max(c1,c2)
+                            if graph[r1][a-1] == 'X':
+                                continue
+                        elif c1 == c2:
+                            a = max(r1,r2)
+                            if graph[a-1][c1] == 'X':
+                                continue
+                        elif r1 != r2 and c1 != c2:
+                            cnt = 0
+                            for u in range(min(r1,r2),max(r1,r2)+1):
+                                for v in range(min(c1,c2),max(c1,c2)+1):
+                                    if graph[u][v] == 'X':
+                                        cnt += 1
+                            if cnt == 2:
+                                continue
+
+                    return False
+    return True
+
+
+def solution(places):
+    answer = []
+    global visited
+
+    for p in places:
+        visited = [[False] * 5 for _ in range(5)]
+        flag = 1
+        graph = []
+        for j in range(5):
+            graph.append(list(p[j]))
+
+        for i in range(5):
+            if flag == 0:
+                break
+            for j in range(5):
+                if graph[i][j] == 'P' and not visited[i][j]:
+                    if not bfs(i, j, graph):
+                        flag = 0
+                        break
+        answer.append(flag)
+
+
+
+    return answer
