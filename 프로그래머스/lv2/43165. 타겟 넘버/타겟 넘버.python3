@@ -1,0 +1,17 @@
+answer = 0
+
+def dfs(idx,num,numbers,target):
+    global answer
+    if idx == len(numbers):
+        if target == num:
+            answer += 1
+        return
+
+    dfs(idx+1,num + numbers[idx],numbers,target)
+    dfs(idx+1,num - numbers[idx],numbers,target)
+
+
+def solution(numbers, target):
+
+    dfs(0,0,numbers,target)
+    return answer
