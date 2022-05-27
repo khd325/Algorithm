@@ -1,0 +1,14 @@
+def solution(s):
+    answer = []
+    s = s[2:-2]
+
+    s = s.split("},{")
+    s.sort(key=len)
+
+    for i in s:
+        a = i.split(",")
+        for b in a:
+            if int(b) not in answer:
+                answer.append(int(b))
+    print(answer)
+    return answer
