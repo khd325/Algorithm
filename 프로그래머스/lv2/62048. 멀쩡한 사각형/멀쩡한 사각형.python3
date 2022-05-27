@@ -1,0 +1,5 @@
+def solution(w,h):
+    import math
+    
+    answer = w*h - (w+h-math.gcd(w,h))
+    return answer
