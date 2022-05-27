@@ -1,0 +1,24 @@
+from itertools import combinations
+
+def solution(orders, course):
+    answer = []
+    for c in course:
+        dic = dict()
+        for o in orders:
+            o = list(o)
+            combi = list(combinations(o,c))
+            for comb in combi:
+                temp = list(comb)
+                temp.sort()
+                dic[''.join(temp)] = dic.get(''.join(temp),0) + 1
+        if len(dic) > 1:
+            max_num = max(dic.values())
+            if max_num <= 1:
+                continue
+            else:
+                for k,v in dic.items():
+                    if v == max_num:
+                        answer.append(k)
+    answer.sort()
+
+    return answer
