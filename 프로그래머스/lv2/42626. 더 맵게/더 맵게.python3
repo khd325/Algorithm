@@ -1,0 +1,21 @@
+import heapq
+
+def solution(scoville, K):
+    answer = 0
+    q = []
+    for i in scoville:
+        heapq.heappush(q,i)
+
+    while q:
+        x = heapq.heappop(q)
+
+        if x >= K:
+            return answer
+        else:
+            if len(q) > 0:
+                y = heapq.heappop(q)
+                y *= 2
+                heapq.heappush(q,x+y)
+                answer += 1
+
+    return -1
