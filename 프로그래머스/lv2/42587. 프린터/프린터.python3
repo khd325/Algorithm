@@ -1,0 +1,24 @@
+from collections import deque
+
+
+def solution(priorities, location):
+    answer = 0
+
+    q = deque()
+    for idx, p in enumerate(priorities):
+        q.append((idx, p))
+
+    while q:
+        max_p = max(q, key=lambda x: x[1])[1]
+        idx, p = q.popleft()
+
+        if p == max_p:
+            if idx == location:
+                answer += 1
+                break
+            else:
+                answer += 1
+        else:
+            q.append((idx,p))
+
+    return answer
