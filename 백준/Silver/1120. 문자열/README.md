@@ -4,11 +4,11 @@
 
 ### 성능 요약
 
-메모리: 30840 KB, 시간: 68 ms
+메모리: 14176 KB, 시간: 128 ms
 
 ### 분류
 
-브루트포스 알고리즘(bruteforcing), 구현(implementation), 문자열(string)
+브루트포스 알고리즘(bruteforcing), 문자열(string)
 
 ### 문제 설명
 
