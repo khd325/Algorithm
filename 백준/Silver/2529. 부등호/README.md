@@ -1,10 +1,10 @@
-# [Silver II] 부등호 - 2529 
+# [Silver I] 부등호 - 2529 
 
 [문제 링크](https://www.acmicpc.net/problem/2529) 
 
 ### 성능 요약
 
-메모리: 30840 KB, 시간: 4420 ms
+메모리: 27512 KB, 시간: 492 ms
 
 ### 분류
 
