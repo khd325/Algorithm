@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 
@@ -16,21 +16,25 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
 
-        long[] arr = new long[n];
+        PriorityQueue<Long> pq = new PriorityQueue<>();
 
-        for(int i = 0; i < n; i++){
-            arr[i] = Long.parseLong(st.nextToken());
+
+        for (int i = 0; i < n; i++) {
+            pq.offer(Long.parseLong(st.nextToken()));
         }
 
-        for(int i = 0; i < m; i++){
-            Arrays.sort(arr);
+        for (int i = 0; i < m; i++) {
+            Long temp = pq.poll() + pq.poll();
+            pq.offer(temp);
+            pq.offer(temp);
 
-            long temp = arr[0] + arr[1];
-            arr[0] = temp;
-            arr[1] = temp;
+        }
+        Long result = 0l;
+
+        while(!pq.isEmpty()){
+            result += pq.poll();
         }
 
-        long result = Arrays.stream(arr).sum();
         System.out.println(result);
 
 
