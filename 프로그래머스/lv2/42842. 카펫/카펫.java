@@ -9,16 +9,16 @@ class Solution {
                 int height = area / width;
                 
                 if ((width - 2) * (height - 2) == yellow){
-                    int b = area - (width - 2) * (height - 2);
-                    if(b == brown){
+                    // int b = area - (width - 2) * (height - 2);
+                    // if(b == brown){
                         answer[0] = width;
                         answer[1] = height;
                         break;
-                    }
+                    // }
                 }
             }
         }
-        
+    
         return answer;
         
     }
