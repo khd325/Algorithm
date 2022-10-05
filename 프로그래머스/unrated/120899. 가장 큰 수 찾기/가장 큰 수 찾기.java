@@ -1,0 +1,17 @@
+class Solution {
+    public int[] solution(int[] array) {
+        
+        int max = array[0];
+        int idx = 0;
+        
+        for(int i = 1; i < array.length; i++){
+            if(max < array[i]){
+                max = array[i];
+                idx = i;
+            }
+        }
+        
+        int[] answer = {max,idx};
+        return answer;
+    }
+}
