@@ -4,25 +4,26 @@ class Solution {
     public String solution(String X, String Y) {
         String result = "";
 
-        int[] cnt = new int[10];
-        
+        int[] x = new int[10];
+        int[] y = new int[10];
 
         StringBuilder sb = new StringBuilder();
-        for(int i = 0;  i <= 9; i++){
-            final int num = i;
-            int xCnt = (int)Arrays.stream(X.split("")).filter(s -> Integer.valueOf(s) == num).count();
-            int yCnt = (int)Arrays.stream(Y.split("")).filter(s -> Integer.valueOf(s) == num).count();
-            
-            cnt[i] = Math.min(xCnt,yCnt);
+        for(int i = 0; i < X.length(); i++ ){
+            x[X.charAt(i) - '0']++;
+        }
+
+        for(int i = 0; i < Y.length(); i++ ){
+            y[Y.charAt(i) - '0']++;
         }
 
         for(int i = 9; i >= 0; i--) {
-            if(cnt[i] != 0){
-                sb.append(String.valueOf(i).repeat(cnt[i]));
+            while(x[i] != 0 && y[i] != 0){
+                x[i]--;
+                y[i]--;
+                sb.append(i);
             }
         }
         result = sb.toString();
-
         if(result.equals("")){
             return "-1";
         }else if (result.startsWith("0")){
