@@ -24,7 +24,7 @@ public class Main {
             sum += (map.get(str.charAt(i)) * Math.pow(R,power++)) % M;
         }
 
-        System.out.println(sum);
+        System.out.println(sum % M);
 
     }
 }
